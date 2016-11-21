@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include "Grid.h"
+#include "Particle.h"
 
 int main()
 {
@@ -61,13 +62,12 @@ int main()
 	//1.4) grid here - see header and source files
 
 	Grid grid;
+	Particle particle;
 	sf::VertexArray derp();
 
 	//rendering
 
 	sf::RenderWindow window(sf::VideoMode(512, 512), "Take Home Test");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
 
 	while (window.isOpen())
 	{
@@ -80,7 +80,8 @@ int main()
 
 		window.clear();
 		grid.drawGrid(&window);
-		window.draw(shape);
+		particle.Update();
+		particle.drawParticle(&window);
 		window.display();
 	}
 
