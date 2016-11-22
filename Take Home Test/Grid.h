@@ -6,7 +6,7 @@ class Grid
 
 private:
 
-	sf::VertexArray lines;
+	sf::VertexArray m_lines;
 
 public:
 

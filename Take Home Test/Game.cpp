@@ -34,9 +34,11 @@ void Game::update(sf::Time deltaTime) {
 
 void Game::render() {
 	m_window.clear();
-	grid.drawGrid(&m_window);
-	particle.update();
-	particle.drawParticle(&m_window);
+	m_grid.drawGrid(&m_window);
+	m_particle.update();
+	m_particle.drawParticle(&m_window);
+	m_sprite.update();
+	m_sprite.drawSprite(&m_window);
 	m_window.display();
 }
 
@@ -49,13 +51,28 @@ void Game::run(){
 	{
 		handleEvents();
 		timeSinceLastUpdate += clock.restart();
-		while (timeSinceLastUpdate > TimePerFrame)
+		while (timeSinceLastUpdate > m_TimePerFrame)
 		{
-			timeSinceLastUpdate -= TimePerFrame;
+			timeSinceLastUpdate -= m_TimePerFrame;
 			handleEvents();
-			update(TimePerFrame);
+			update(m_TimePerFrame);
 		}
 		render();
 	}
 	
 }
+
+//code here references http://stackoverflow.com/questions/21420772/array-of-linked-lists-c
+
+//struct Game::particleNode {
+//	Particle nodeParticle;
+//	particleNode *next;
+//};
+//
+//Game::particleNode* createNewParticleNode{
+//
+//}
+//
+//void Game::initArrayofParticles() {
+//	nodeArray = new *particleNode[];
+//}
