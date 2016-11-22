@@ -38,7 +38,6 @@ void Particle::update() {
 	m_newposX = m_particle.getPosition().x + (m_horizonttalOffset);
 	m_newposY = m_particle.getPosition().y - (m_speed * m_deltaY);
 	m_particle.setPosition(m_newposX, m_newposY);
-	std::cout << m_life << std::endl;
 
 }
 

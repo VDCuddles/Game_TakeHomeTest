@@ -1,6 +1,20 @@
 #include <SFML/Graphics.hpp>
 #pragma once
 
+enum CharacterType
+{
+	ENEMY,
+	PLAYER
+};
+
+enum Direction
+{
+	LEFT,
+	RIGHT,
+	UP,
+	DOWN,
+};
+
 class Sprite
 {
 
@@ -18,6 +32,8 @@ public:
 	Sprite();
 	void drawSprite(sf::RenderWindow *window);
 	void update();
+	void setPosition(Direction dir);
+	void loadSheet(CharacterType charac);
 
 };
 
