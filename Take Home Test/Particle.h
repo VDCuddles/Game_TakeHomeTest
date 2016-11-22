@@ -14,6 +14,9 @@ private:
 	float m_newposX;
 	float m_newposY;
 	float m_horizonttalOffset;
+	float m_life;
+	sf::Color m_fillColor;
+	int m_alpha;
 
 public:
 

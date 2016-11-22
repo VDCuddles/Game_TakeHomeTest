@@ -18,6 +18,7 @@ private:
 	void render();
 	Grid grid;
 	Particle particle;
+	struct Particle listofParticles;
 
 
 public:

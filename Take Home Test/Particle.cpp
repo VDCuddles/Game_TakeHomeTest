@@ -1,19 +1,23 @@
 #include "Particle.h"
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
 
 Particle::Particle() {
 
-	m_particle.setRadius(15);
-	m_particle.setFillColor(sf::Color::Green);
-	m_particle.setOrigin(15, 15);
+	m_life = 100;
+	m_alpha = 255 * (m_life);
+	m_fillColor = sf::Color(0, 255, 0, m_alpha);
 
-	//float width = (float)sf::VideoMode::getDesktopMode().width;
-	//float height = (float)sf::VideoMode::getDesktopMode().height;
+	m_particle.setRadius(15);
+	m_particle.setFillColor(m_fillColor);
+	m_particle.setOrigin(15, 15);
 	m_particle.setPosition((384),(384));
+
 	m_speed = 10;
 	m_deltaX = 0.8;
 	m_deltaY = 0.8;
+
 	srand(time((time_t)NULL));
 	m_horizonttalOffset = rand() % (10);
 	if (m_horizonttalOffset > 5) {
@@ -25,12 +29,16 @@ Particle::Particle() {
 void Particle::update() {
 
 
-	m_deltaY -= 0.01;
-	m_deltaY -= 0.01;
+	m_life -= 0.5;
+	m_alpha = 255 * (m_life/100);
+	m_fillColor = sf::Color(0, 255, 0, m_alpha);
+	m_particle.setFillColor(m_fillColor);
 
+	m_deltaY -= 0.01;
 	m_newposX = m_particle.getPosition().x + (m_horizonttalOffset);
 	m_newposY = m_particle.getPosition().y - (m_speed * m_deltaY);
 	m_particle.setPosition(m_newposX, m_newposY);
+	std::cout << m_life << std::endl;
 
 }
 
