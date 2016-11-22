@@ -18,7 +18,7 @@ private:
 public:
 
 	Particle();
-	void Update();
+	void update();
 	void drawParticle(sf::RenderWindow *window);
 
 };

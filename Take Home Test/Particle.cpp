@@ -3,24 +3,24 @@
 
 Particle::Particle() {
 
-	particle.setRadius(10);
-	particle.setFillColor(sf::Color::Red);
-	particle.setOrigin(10, 10);
+	particle.setRadius(15);
+	particle.setFillColor(sf::Color::Green);
+	particle.setOrigin(15, 15);
 
 	//float width = (float)sf::VideoMode::getDesktopMode().width;
 	//float height = (float)sf::VideoMode::getDesktopMode().height;
-	particle.setPosition((256),(256));
-	speed = 0.15;
+	particle.setPosition((384),(384));
+	speed = 0.55;
 	deltaX = 1;
 	deltaY = 0.8;
 	hasAscended = false;
 
 }
 
-void Particle::Update() {
+void Particle::update() {
 
 
-	deltaY -= 0.0002;
+	deltaY -= 0.0005;
 
 	newposX = particle.getPosition().x;
 	newposY = particle.getPosition().y - (speed * deltaY);

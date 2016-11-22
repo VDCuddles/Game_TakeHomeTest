@@ -1,8 +1,12 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <string>
-#include "Grid.h"
-#include "Particle.h"
+#include "Game.h"
+
+void runGame() {
+	Game* game = new Game();
+	game->run();
+}
 
 int main()
 {
@@ -61,29 +65,29 @@ int main()
 
 	//1.4) grid here - see header and source files
 
-	Grid grid;
-	Particle particle;
-	sf::VertexArray derp();
-
 	//rendering
 
-	sf::RenderWindow window(sf::VideoMode(512, 512), "Take Home Test");
 
-	while (window.isOpen())
-	{
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				window.close();
-		}
 
-		window.clear();
-		grid.drawGrid(&window);
-		particle.Update();
-		particle.drawParticle(&window);
-		window.display();
-	}
+	runGame();
+
+	//sf::RenderWindow window(sf::VideoMode(768, 768), "Take Home Test");
+	//
+	//while (window.isOpen())
+	//{
+	//	sf::Event event;
+	//	while (window.pollEvent(event))
+	//	{
+	//		if (event.type == sf::Event::Closed)
+	//			window.close();
+	//	}
+
+	//	window.clear();
+	//	grid.drawGrid(&window);
+	//	particle.update();
+	//	particle.drawParticle(&window);
+	//	window.display();
+	//}
 
 	return 0;
 }
