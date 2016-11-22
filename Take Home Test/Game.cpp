@@ -15,6 +15,17 @@ Game::~Game()
 
 void Game::handleEvents() {
 
+	sf::Event event;
+	if (m_window.pollEvent(event))
+	{
+		switch (event.type)
+		{
+		case sf::Event::Closed:
+
+			m_window.close();
+			return;
+		}
+	}
 }
 
 void Game::update(sf::Time deltaTime) {
