@@ -6,8 +6,8 @@ Sprite::Sprite() {
 	loadSheet(PLAYER);
 	m_textureRect.left = 0;
 	m_textureRect.top = 0;
-	m_textureRect.width = 25;
-	m_textureRect.height = 34;
+	m_textureRect.width = 24;
+	m_textureRect.height = 36;
 
 	m_position = (sf::Vector2f(100, 100));
 
@@ -21,7 +21,33 @@ void Sprite::drawSprite(sf::RenderWindow *window) {
 	window->draw(m_sprite);
 }
 
-void Sprite::update() {
+void Sprite::animate(Direction dir) {
+
+	if (dir != NONE)
+	{
+		if (m_frame < 0) {
+			m_frame = m_frameMax - 1;
+		}
+		else if (m_frame == m_frameMax) {
+			m_frame = 1;
+		}
+	}
+
+	if (dir == DOWN) {
+		m_sprite.setTextureRect(sf::IntRect(m_frame * m_textureRect.width, 0, m_textureRect.width, m_textureRect.height));
+	}
+	if (dir == UP) {
+		m_sprite.setTextureRect(sf::IntRect(m_frame * m_textureRect.width, m_textureRect.height, m_textureRect.width, m_textureRect.height));
+	}
+	if (dir == LEFT) {
+		m_sprite.setTextureRect(sf::IntRect(m_frame * m_textureRect.width, m_textureRect.height * 2, m_textureRect.width, m_textureRect.height));
+	}
+	if (dir == RIGHT) {
+		m_sprite.setTextureRect(sf::IntRect(m_frame * m_textureRect.width, m_textureRect.height * 3, m_textureRect.width, m_textureRect.height));
+	}
+
+	m_frame++;
+
 
 }
 
@@ -62,3 +88,13 @@ void Sprite::loadSheet(CharacterType charac){
 		}
 	}
 }
+
+
+void Sprite::setFacing(Direction dir) {
+	m_facing = dir;
+}
+
+Direction Sprite::getFacing() {
+	return m_facing;
+}
+

@@ -13,6 +13,7 @@ enum Direction
 	RIGHT,
 	UP,
 	DOWN,
+	NONE
 };
 
 class Sprite
@@ -24,6 +25,11 @@ private:
 	sf::Vector2f m_position;
 	sf::IntRect m_textureRect;
 	sf::Sprite m_sprite;
+	int m_row;
+	int m_frame;
+	int m_frameMax = 4;
+	int m_frameDirection;
+	Direction m_facing;
 
 
 
@@ -31,9 +37,11 @@ public:
 
 	Sprite();
 	void drawSprite(sf::RenderWindow *window);
-	void update();
+	void animate(Direction dir);
 	void setPosition(Direction dir);
 	void loadSheet(CharacterType charac);
+	void setFacing(Direction dir);
+	Direction getFacing();
 
 };
 
