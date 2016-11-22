@@ -1,34 +1,40 @@
 #include "Particle.h"
-
+#include <cstdlib>
+#include <ctime>
 
 Particle::Particle() {
 
-	particle.setRadius(15);
-	particle.setFillColor(sf::Color::Green);
-	particle.setOrigin(15, 15);
+	m_particle.setRadius(15);
+	m_particle.setFillColor(sf::Color::Green);
+	m_particle.setOrigin(15, 15);
 
 	//float width = (float)sf::VideoMode::getDesktopMode().width;
 	//float height = (float)sf::VideoMode::getDesktopMode().height;
-	particle.setPosition((384),(384));
-	speed = 0.55;
-	deltaX = 1;
-	deltaY = 0.8;
-	hasAscended = false;
-
+	m_particle.setPosition((384),(384));
+	m_speed = 10;
+	m_deltaX = 0.8;
+	m_deltaY = 0.8;
+	srand(time((time_t)NULL));
+	m_horizonttalOffset = rand() % (10);
+	if (m_horizonttalOffset > 5) {
+		m_horizonttalOffset *= -1;
+	}
+	m_horizonttalOffset /= 4;
 }
 
 void Particle::update() {
 
 
-	deltaY -= 0.0005;
+	m_deltaY -= 0.01;
+	m_deltaY -= 0.01;
 
-	newposX = particle.getPosition().x;
-	newposY = particle.getPosition().y - (speed * deltaY);
-	particle.setPosition(newposX, newposY);
+	m_newposX = m_particle.getPosition().x + (m_horizonttalOffset);
+	m_newposY = m_particle.getPosition().y - (m_speed * m_deltaY);
+	m_particle.setPosition(m_newposX, m_newposY);
 
 }
 
 void Particle::drawParticle(sf::RenderWindow *window) {
 
-	window->draw(particle);
+	window->draw(m_particle);
 }

@@ -3,6 +3,12 @@
 #include <string>
 #include "Game.h"
 
+//Table of Contents
+
+//Question 1 answers below; 1.4) - see header and source files
+
+//Question 2 answers in Particle class
+
 void runGame() {
 	Game* game = new Game();
 	game->run();
@@ -63,31 +69,7 @@ int main()
 	std::cout << reference << std::endl;//since this refers to variable2's data (now stored in variable)
 										//this prints the same as above
 
-	//1.4) grid here - see header and source files
-
-	//rendering
-
-
-
 	runGame();
-
-	//sf::RenderWindow window(sf::VideoMode(768, 768), "Take Home Test");
-	//
-	//while (window.isOpen())
-	//{
-	//	sf::Event event;
-	//	while (window.pollEvent(event))
-	//	{
-	//		if (event.type == sf::Event::Closed)
-	//			window.close();
-	//	}
-
-	//	window.clear();
-	//	grid.drawGrid(&window);
-	//	particle.update();
-	//	particle.drawParticle(&window);
-	//	window.display();
-	//}
 
 	return 0;
 }
