@@ -92,6 +92,7 @@ void Game::render() {
 	m_particle2.update();
 	m_particle2.drawParticle(&m_window);
 	m_object1.drawObject(&m_window);
+	m_enemy.chase(m_player.getPosition());
 	m_player.animate(m_player.getFacing());
 	m_player.drawSprite(&m_window);
 	m_enemy.animate(m_enemy.getFacing());

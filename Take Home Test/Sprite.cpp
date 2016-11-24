@@ -3,13 +3,11 @@
 
 Sprite::Sprite() {
 
-	//loadSheet(PLAYER);
 	m_textureRect.left = 0;
 	m_textureRect.top = 0;
 	m_textureRect.width = 24;
 	m_textureRect.height = 36;
 
-	//m_position = (sf::Vector2f(100, 100));
 
 	m_sprite.setPosition(m_position);
 	m_sprite.setTextureRect(m_textureRect);
@@ -144,4 +142,25 @@ void Sprite::setTextureRect(sf::IntRect rect) {
 
 void Sprite::setTexture() {
 	m_sprite.setTexture(m_texture);
+}
+
+void Sprite::chase(sf::Vector2f target) {
+	if (getPosition().x < target.x) {
+		m_position.x += 0.5;
+		setFacing(RIGHT);
+	}
+	if (getPosition().y < target.y) {
+		m_position.y += 0.5;
+		setFacing(DOWN);
+	}
+	if (getPosition().x > target.x){
+		m_position.x -= 0.5;
+		setFacing(LEFT);
+	}
+	if (getPosition().y > target.y){
+		m_position.y -= 0.5;
+		setFacing(UP);
+	}
+	setPosition(m_position);
+
 }
