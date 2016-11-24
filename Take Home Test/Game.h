@@ -3,6 +3,7 @@
 #include "Grid.h"
 #include "LinkedList.h"
 #include "Sprite.h"
+#include "EnvironmentObject.h"
 #pragma once
 
 class Game
@@ -23,7 +24,7 @@ private:
 	Sprite m_player;
 	Sprite m_enemy;
 	LinkedList m_particlelist;
-
+	EnvironmentObject m_object1;
 	//void initArrayofParticles();
 	//particleNode* createNewParticleNode();
 

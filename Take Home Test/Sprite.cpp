@@ -9,7 +9,7 @@ Sprite::Sprite() {
 	m_textureRect.width = 24;
 	m_textureRect.height = 36;
 
-	m_position = (sf::Vector2f(100, 100));
+	//m_position = (sf::Vector2f(100, 100));
 
 	m_sprite.setPosition(m_position);
 	m_sprite.setTextureRect(m_textureRect);

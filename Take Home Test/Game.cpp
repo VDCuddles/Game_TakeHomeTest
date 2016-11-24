@@ -10,13 +10,21 @@ Game::Game() {
 	//Sprite m_player(PLAYER);
 	//Sprite m_enemy(ENEMY);
 	m_player.loadSheet(PLAYER);
+	m_player.setPosition(NONE, sf::Vector2f(100, 100));
+
 	m_enemy.loadSheet(ENEMY);
-	m_player.setPosition(NONE, sf::Vector2f (100,100));
 	m_enemy.setPosition(NONE, sf::Vector2f (500,500));
+
+	m_object1.setIntRect(392, 383, 38, 96);
+	m_object1.loadTexture("Resources/tileset_desert.png"); 
+	m_object1.setPosition(sf::Vector2f(300, 300));
+	m_object1.setTexture();
+
 	Particle p1;
 	Particle p2;
 	m_particlelist.addParticleToList(p1);
 	m_particlelist.addParticleToList(p2);
+	
 }
 
 Game::~Game()
@@ -79,6 +87,7 @@ void Game::render() {
 	m_particle.drawParticle(&m_window);
 	m_particle2.update();
 	m_particle2.drawParticle(&m_window);
+	m_object1.drawObject(&m_window);
 	m_player.animate(m_player.getFacing());
 	m_player.drawSprite(&m_window);
 	m_window.display();
