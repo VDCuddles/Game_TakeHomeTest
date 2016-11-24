@@ -21,7 +21,7 @@ class Sprite
 
 private:
 
-	sf::Texture m_characterSprite;
+	sf::Texture m_texture;
 	sf::Vector2f m_position;
 	sf::Vector2f m_enemyPosition;
 	sf::IntRect m_textureRect;
@@ -40,11 +40,15 @@ public:
 	//Sprite::Sprite(CharacterType charatype);
 	void drawSprite(sf::RenderWindow *window);
 	void animate(Direction dir);
-	void setPosition(Direction dir, sf::Vector2f position);
+	void updatePosition(Direction dir, sf::Vector2f position);
+	void setPosition(sf::Vector2f position);
 	sf::Vector2f getPosition();
 	void loadSheet(CharacterType charac);
 	void setFacing(Direction dir);
 	Direction getFacing();
+	void setTextureRect(sf::IntRect rect);
+	void setIntRect(int left, int top, int width, int height);
+	void setTexture();
 
 };
 

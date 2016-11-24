@@ -9,11 +9,15 @@ Game::Game() {
 
 	//Sprite m_player(PLAYER);
 	//Sprite m_enemy(ENEMY);
+	m_player.setIntRect(0, 0, 24, 36);
 	m_player.loadSheet(PLAYER);
-	m_player.setPosition(NONE, sf::Vector2f(100, 100));
+	m_player.setPosition(sf::Vector2f(100, 100));
+	m_player.setTexture();
 
+	m_enemy.setIntRect(0, 0, 24, 36);
 	m_enemy.loadSheet(ENEMY);
-	m_enemy.setPosition(NONE, sf::Vector2f (500,500));
+	m_enemy.setPosition(sf::Vector2f (500,500));
+	m_enemy.setTexture();
 
 	m_object1.setIntRect(392, 383, 38, 96);
 	m_object1.loadTexture("Resources/tileset_desert.png"); 
@@ -36,24 +40,24 @@ void Game::handleEvents() {
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
-		m_player.setPosition(UP, m_player.getPosition());
+		m_player.updatePosition(UP, m_player.getPosition());
 		m_player.setFacing(UP);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		m_player.setPosition(DOWN, m_player.getPosition());
+		m_player.updatePosition(DOWN, m_player.getPosition());
 		m_player.setFacing(DOWN);
 
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		m_player.setPosition(LEFT, m_player.getPosition());
+		m_player.updatePosition(LEFT, m_player.getPosition());
 		m_player.setFacing(LEFT);
 
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		m_player.setPosition(RIGHT, m_player.getPosition());
+		m_player.updatePosition(RIGHT, m_player.getPosition());
 		m_player.setFacing(RIGHT);
 
 	}
@@ -90,6 +94,8 @@ void Game::render() {
 	m_object1.drawObject(&m_window);
 	m_player.animate(m_player.getFacing());
 	m_player.drawSprite(&m_window);
+	m_enemy.animate(m_enemy.getFacing());
+	m_enemy.drawSprite(&m_window);
 	m_window.display();
 }
 

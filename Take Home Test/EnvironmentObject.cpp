@@ -11,7 +11,7 @@ EnvironmentObject::EnvironmentObject() {
 	//m_position = (sf::Vector2f(200, 200));
 	//loadTexture();
 
-	//m_sprite.setPosition(m_position);
+	//m_sprite.updatePosition(m_position);
 	//m_sprite.setTextureRect(m_textureRect);
 	//m_sprite.setTexture(m_texture);
 }

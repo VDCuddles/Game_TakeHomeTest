@@ -13,7 +13,7 @@ Sprite::Sprite() {
 
 	m_sprite.setPosition(m_position);
 	m_sprite.setTextureRect(m_textureRect);
-	m_sprite.setTexture(m_characterSprite);
+	m_sprite.setTexture(m_texture);
 
 }
 
@@ -27,9 +27,9 @@ Sprite::Sprite() {
 //
 //	m_position = (sf::Vector2f(500, 500));
 //
-//	m_sprite.setPosition(m_enemyPosition);
+//	m_sprite.updatePosition(m_enemyPosition);
 //	m_sprite.setTextureRect(m_textureRect);
-//	m_sprite.setTexture(m_characterSprite);
+//	m_sprite.setTexture(m_texture);
 //
 //	if (charatype == PLAYER)
 //	{
@@ -72,7 +72,7 @@ void Sprite::animate(Direction dir) {
 
 }
 
-void Sprite::setPosition(Direction dir, sf::Vector2f position){
+void Sprite::updatePosition(Direction dir, sf::Vector2f position){
 	if (dir == UP) {
 		m_position.y -= 1;
 		m_sprite.setPosition(position);
@@ -96,18 +96,23 @@ sf::Vector2f Sprite::getPosition() {
 	return m_position;
 }
 
+void Sprite::setPosition(sf::Vector2f position) {
+	m_position = position;
+	m_sprite.setPosition(position);
+}
+
 void Sprite::loadSheet(CharacterType charac){
 
 	if (charac == PLAYER)
 	{
-		if (!m_characterSprite.loadFromFile("Resources/player.png"))
+		if (!m_texture.loadFromFile("Resources/player.png"))
 		{
 			std::cout << "Error loading resource sprite.png" << std::endl;
 		}
 	}
 	if (charac == ENEMY)
 	{
-		if (!m_characterSprite.loadFromFile("Resources/enemy.png"))
+		if (!m_texture.loadFromFile("Resources/enemy.png"))
 		{
 			std::cout << "Error loading resource sprite.png" << std::endl;
 		}
@@ -123,3 +128,20 @@ Direction Sprite::getFacing() {
 	return m_facing;
 }
 
+void Sprite::setIntRect(int left, int top, int width, int height) {
+	sf::IntRect rect;
+	rect.left = left;
+	rect.top = top;
+	rect.width = width;
+	rect.height = height;
+	m_sprite.setTextureRect(rect);
+
+}
+
+void Sprite::setTextureRect(sf::IntRect rect) {
+	m_textureRect = rect;
+}
+
+void Sprite::setTexture() {
+	m_sprite.setTexture(m_texture);
+}
