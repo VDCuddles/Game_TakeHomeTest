@@ -14,3 +14,11 @@ void LinkedList::addParticleToList(Particle particle) {
 	head = n;
 
 }
+
+Particle LinkedList::popValue() {
+	node *n = head;
+	Particle ret = n->m_particle;
+	head = head->next;
+	delete n;
+	return ret;
+}

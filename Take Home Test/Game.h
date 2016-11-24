@@ -19,8 +19,11 @@ private:
 	void render();
 	Grid m_grid;
 	Particle m_particle;
+	Particle m_particle2;
 	Sprite m_player;
 	Sprite m_enemy;
+	LinkedList m_particlelist;
+
 	//void initArrayofParticles();
 	//particleNode* createNewParticleNode();
 

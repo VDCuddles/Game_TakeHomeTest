@@ -5,6 +5,18 @@ Game::Game() {
 	sf::ContextSettings settings;
 	settings.antialiasingLevel = 8;
 	m_window.create(sf::VideoMode(sf::VideoMode(768,768)), "Take Home Test", sf::Style::Default, settings);
+	//Sprite* m_enemy = new Sprite(ENEMY);
+
+	//Sprite m_player(PLAYER);
+	//Sprite m_enemy(ENEMY);
+	m_player.loadSheet(PLAYER);
+	m_enemy.loadSheet(ENEMY);
+	m_player.setPosition(NONE, sf::Vector2f (100,100));
+	m_enemy.setPosition(NONE, sf::Vector2f (500,500));
+	Particle p1;
+	Particle p2;
+	m_particlelist.addParticleToList(p1);
+	m_particlelist.addParticleToList(p2);
 }
 
 Game::~Game()
@@ -16,24 +28,24 @@ void Game::handleEvents() {
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
-		m_player.setPosition(UP);
+		m_player.setPosition(UP, m_player.getPosition());
 		m_player.setFacing(UP);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		m_player.setPosition(DOWN);
+		m_player.setPosition(DOWN, m_player.getPosition());
 		m_player.setFacing(DOWN);
 
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		m_player.setPosition(LEFT);
+		m_player.setPosition(LEFT, m_player.getPosition());
 		m_player.setFacing(LEFT);
 
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		m_player.setPosition(RIGHT);
+		m_player.setPosition(RIGHT, m_player.getPosition());
 		m_player.setFacing(RIGHT);
 
 	}
@@ -65,6 +77,8 @@ void Game::render() {
 	m_grid.drawGrid(&m_window);
 	m_particle.update();
 	m_particle.drawParticle(&m_window);
+	m_particle2.update();
+	m_particle2.drawParticle(&m_window);
 	m_player.animate(m_player.getFacing());
 	m_player.drawSprite(&m_window);
 	m_window.display();

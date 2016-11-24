@@ -3,7 +3,7 @@
 
 Sprite::Sprite() {
 
-	loadSheet(PLAYER);
+	//loadSheet(PLAYER);
 	m_textureRect.left = 0;
 	m_textureRect.top = 0;
 	m_textureRect.width = 24;
@@ -16,6 +16,27 @@ Sprite::Sprite() {
 	m_sprite.setTexture(m_characterSprite);
 
 }
+
+//Sprite::Sprite(CharacterType charatype) {
+
+//	loadSheet(charatype);
+//	m_textureRect.left = 0;
+//	m_textureRect.top = 0;
+//	m_textureRect.width = 24;
+//	m_textureRect.height = 36;
+//
+//	m_position = (sf::Vector2f(500, 500));
+//
+//	m_sprite.setPosition(m_enemyPosition);
+//	m_sprite.setTextureRect(m_textureRect);
+//	m_sprite.setTexture(m_characterSprite);
+//
+//	if (charatype == PLAYER)
+//	{
+//		m_position = (sf::Vector2f(100, 100));
+//	}
+//
+//}
 
 void Sprite::drawSprite(sf::RenderWindow *window) {
 	window->draw(m_sprite);
@@ -51,24 +72,28 @@ void Sprite::animate(Direction dir) {
 
 }
 
-void Sprite::setPosition(Direction dir) {
+void Sprite::setPosition(Direction dir, sf::Vector2f position){
 	if (dir == UP) {
 		m_position.y -= 1;
-		m_sprite.setPosition(m_position);
+		m_sprite.setPosition(position);
 	}
 	if (dir == DOWN) {
 		m_position.y += 1;
-		m_sprite.setPosition(m_position);
+		m_sprite.setPosition(position);
 	}
 	if (dir == LEFT) {
 		m_position.x -= 1;
-		m_sprite.setPosition(m_position);
+		m_sprite.setPosition(position);
 	}
 	if (dir == RIGHT) {
 		m_position.x += 1;
-		m_sprite.setPosition(m_position);
+		m_sprite.setPosition(position);
 	}
 
+}
+
+sf::Vector2f Sprite::getPosition() {
+	return m_position;
 }
 
 void Sprite::loadSheet(CharacterType charac){
