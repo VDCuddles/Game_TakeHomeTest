@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <math.h>
 #pragma once
 
 class Collideable
@@ -18,7 +19,7 @@ public:
 	void setOrigin(sf::Vector2f origin);
 	void setRadius(float radius);
 	void drawBounds(sf::RenderWindow *window);
-	sf::Vector2f getTileLocation();
+	sf::Vector2i getTileLocation();
 
 };
 

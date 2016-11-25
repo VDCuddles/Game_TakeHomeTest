@@ -238,3 +238,19 @@ std::string Game::checkCollision() {
 	}
 
 }
+
+//int Game::getGridTileType(int x, int y) {
+//	return (m_grid.getTileType(x, y));
+//	}
+//
+//bool Game::checkMoveable(sf::Vector2i nextlocation) {
+//	int gridposx = nextlocation.x;
+//	int gridposy = nextlocation.y;
+//	int tiletype = (getGridTileType(gridposx,gridposy));
+//	if (tiletype == 2) {
+//		return false;
+//	}
+//	else {
+//		return true;
+//	}
+//}

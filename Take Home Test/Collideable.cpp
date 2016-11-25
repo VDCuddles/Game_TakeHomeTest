@@ -30,9 +30,12 @@ float Collideable::getCollisionBounds() {
 	return bounds;
 }
 
-sf::Vector2f Collideable::getTileLocation() {
+sf::Vector2i Collideable::getTileLocation() {
 	sf::Vector2f currentloc = m_collisionBounds.getPosition();
 	currentloc.x /= 12;
 	currentloc.y /= 12;
-	return currentloc;
+	round(currentloc.x);
+	round(currentloc.y);
+	sf::Vector2i as2i = static_cast<sf::Vector2i>(currentloc);
+	return as2i;
 }

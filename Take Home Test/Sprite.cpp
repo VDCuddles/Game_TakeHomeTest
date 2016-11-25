@@ -185,6 +185,6 @@ Collideable Sprite::getCollider() {
 	return m_collideable;
 }
 
-sf::Vector2f Sprite::getColliderTileLocation() {
+sf::Vector2i Sprite::getColliderTileLocation() {
 	return m_collideable.getTileLocation();
 }

@@ -87,6 +87,6 @@ Collideable EnvironmentObject::getCollider() {
 	return m_collideable;
 }
 
-sf::Vector2f EnvironmentObject::getColliderTileLocation() {
-	return m_collideable.getTileLocation();
+sf::Vector2i EnvironmentObject::getColliderTileLocation() {
+	return (m_collideable.getTileLocation());
 }
