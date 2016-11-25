@@ -18,7 +18,7 @@ public:
 	void setOrigin(sf::Vector2f origin);
 	void setRadius(float radius);
 	void drawBounds(sf::RenderWindow *window);
-
+	sf::Vector2f getTileLocation();
 
 };
 

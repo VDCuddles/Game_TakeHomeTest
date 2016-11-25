@@ -69,11 +69,24 @@ Game* Game::getInstance()
 
 void Game::handleEvents() {
 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F2))
+	{
+		for (int i = 0; i < 5; i++) {
+			std::string string = "index " + std::to_string(i) + " tile location: " +
+				std::to_string(m_allColliders[i].getTileLocation().x) +
+				"," +
+				std::to_string(m_allColliders[i].getTileLocation().y);
+			std::cout << string << std::endl;
+		}
+
+	}
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		m_player.updatePosition(UP, m_player.getPosition());
 		m_player.setColliderPosition(m_player.getPosition());
 		m_player.setFacing(UP);
+
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{

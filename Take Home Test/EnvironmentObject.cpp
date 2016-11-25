@@ -86,3 +86,7 @@ void EnvironmentObject::drawCollider(sf::RenderWindow *window) {
 Collideable EnvironmentObject::getCollider() {
 	return m_collideable;
 }
+
+sf::Vector2f EnvironmentObject::getColliderTileLocation() {
+	return m_collideable.getTileLocation();
+}
