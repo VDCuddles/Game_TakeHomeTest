@@ -164,10 +164,7 @@ void Game::update(sf::Time deltaTime) {
 void Game::render() {
 	m_window.clear();
 	m_grid.drawGrid(&m_window);
-	for (int i = 0; i < getnumSParticles(); i++) {
-		m_particleArray[i]->drawParticle(&m_window);
-		m_particleArray2[i]->drawParticle(&m_window);
-	}
+
 
 	for (int i = 0; i < 5; i++) {
 		m_allColliders[i].drawBounds(&m_window);
@@ -178,7 +175,10 @@ void Game::render() {
 	m_object2.drawObject(&m_window);
 	m_object3.drawObject(&m_window);
 
-
+	for (int i = 0; i < getnumSParticles(); i++) {
+		m_particleArray[i]->drawParticle(&m_window);
+		m_particleArray2[i]->drawParticle(&m_window);
+	}
 	m_window.display();
 }
 
