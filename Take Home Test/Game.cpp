@@ -11,19 +11,31 @@ Game::Game() {
 	m_window.create(sf::VideoMode(sf::VideoMode(768,768)), "Take Home Test", sf::Style::Default, settings);
 
 	m_player.setIntRect(0, 0, 24, 36);
+	m_player.setOrigin(sf::Vector2f( 12, 13));
 	m_player.loadSheet(PLAYER);
 	m_player.setPosition(sf::Vector2f(100, 100));
 	m_player.setTexture();
+	m_player.setColliderRadius(16);
+	m_player.setColliderOrigin(sf::Vector2f(16, 12));
+	m_player.setColliderPosition(sf::Vector2f(100, 100));
 
 	m_enemy.setIntRect(0, 0, 24, 36);
+	m_enemy.setOrigin(sf::Vector2f(12, 13));
 	m_enemy.loadSheet(ENEMY);
 	m_enemy.setPosition(sf::Vector2f (500,500));
 	m_enemy.setTexture();
+	m_enemy.setColliderRadius(16);
+	m_enemy.setColliderOrigin(sf::Vector2f(16, 12));
+	m_enemy.setColliderPosition(sf::Vector2f(500, 500));
 
 	m_object1.setIntRect(392, 383, 38, 96);
-	m_object1.loadTexture("Resources/tileset_desert.png"); 
-	m_object1.setPosition(sf::Vector2f(300, 300));
+	m_object1.setOrigin(sf::Vector2f(19, 48));
+	m_object1.loadTexture("Resources/tileset_desert.png");
+	m_object1.setPosition(sf::Vector2f(384, 415));
 	m_object1.setTexture();
+	m_object1.setColliderRadius(19);
+	m_object1.setColliderOrigin(sf::Vector2f(19, 19));
+	m_object1.setColliderPosition(sf::Vector2f(390, 440));
 
 }
 
@@ -42,28 +54,33 @@ void Game::handleEvents() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		m_player.updatePosition(UP, m_player.getPosition());
+		m_player.setColliderPosition(m_player.getPosition());
 		m_player.setFacing(UP);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		m_player.updatePosition(DOWN, m_player.getPosition());
+		m_player.setColliderPosition(m_player.getPosition());
 		m_player.setFacing(DOWN);
 
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		m_player.updatePosition(LEFT, m_player.getPosition());
+		m_player.setColliderPosition(m_player.getPosition());
 		m_player.setFacing(LEFT);
 
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		m_player.updatePosition(RIGHT, m_player.getPosition());
+		m_player.setColliderPosition(m_player.getPosition());
 		m_player.setFacing(RIGHT);
 
 	}
 	if (!sf::Keyboard::isKeyPressed) 
 	{
+		m_player.setColliderPosition(m_player.getPosition());
 		m_player.setFacing(NONE);
 
 	}
@@ -94,6 +111,7 @@ void Game::update(sf::Time deltaTime) {
 	for (int i = 0; i < getnumSParticles(); i++) {
 		m_particleArray[i]->update();
 	}
+
 }
 
 void Game::render() {
@@ -101,10 +119,15 @@ void Game::render() {
 	for (int i = 0; i < getnumSParticles(); i++) {
 		m_particleArray[i]->drawParticle(&m_window);
 	}
+	m_player.drawCollider(&m_window);
+	m_enemy.drawCollider(&m_window);
+	m_object1.drawCollider(&m_window);
 	m_grid.drawGrid(&m_window);
-	m_object1.drawObject(&m_window);
 	m_player.drawSprite(&m_window);
 	m_enemy.drawSprite(&m_window);
+	m_object1.drawObject(&m_window);
+
+
 	m_window.display();
 }
 

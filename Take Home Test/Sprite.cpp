@@ -127,19 +127,56 @@ void Sprite::chase(sf::Vector2f target) {
 	if (getPosition().x < target.x) {
 		m_position.x += 0.5;
 		setFacing(RIGHT);
+		setColliderPosition(m_position);
 	}
 	if (getPosition().y < target.y) {
 		m_position.y += 0.5;
 		setFacing(DOWN);
+		setColliderPosition(m_position);
 	}
 	if (getPosition().x > target.x){
 		m_position.x -= 0.5;
 		setFacing(LEFT);
+		setColliderPosition(m_position);
 	}
 	if (getPosition().y > target.y){
 		m_position.y -= 0.5;
 		setFacing(UP);
+		setColliderPosition(m_position);
 	}
 	setPosition(m_position);
 
+}
+
+//collision
+
+float Sprite::getCollisionBounds() {
+	float bounds = m_collideable.getCollisionBounds();
+	return bounds;
+}
+
+sf::Vector2f Sprite::getOrigin() {
+	sf::Vector2f origin = m_sprite.getOrigin();
+	return origin;
+}
+
+void Sprite::setOrigin(sf::Vector2f origin) {
+	m_sprite.setOrigin(origin);
+}
+
+void Sprite::setColliderOrigin(sf::Vector2f origin) {
+	m_collideable.setOrigin(origin);
+}
+
+void Sprite::setColliderPosition(sf::Vector2f position) {
+	m_collideable.setPosition(position);
+}
+
+
+void Sprite::setColliderRadius(float radius) {
+	m_collideable.setRadius(radius);
+}
+
+void Sprite::drawCollider(sf::RenderWindow *window) {
+	m_collideable.drawBounds(window);
 }

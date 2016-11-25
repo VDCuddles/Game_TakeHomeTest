@@ -118,6 +118,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Collideable.cpp" />
     <ClCompile Include="EnvironmentObject.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="LinkedList.cpp" />
@@ -127,6 +128,7 @@
     <ClCompile Include="Sprite.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Collideable.h" />
     <ClInclude Include="EnvironmentObject.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Grid.h" />

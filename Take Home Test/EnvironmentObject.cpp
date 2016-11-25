@@ -49,3 +49,36 @@ void EnvironmentObject::setTextureRect(sf::IntRect rect) {
 void EnvironmentObject::setTexture() {
 	m_sprite.setTexture(m_texture);
 }
+
+//collision
+
+float EnvironmentObject::getCollisionBounds() {
+	float bounds = m_collideable.getCollisionBounds();
+	return bounds;
+}
+
+sf::Vector2f EnvironmentObject::getOrigin() {
+	sf::Vector2f origin = m_sprite.getOrigin();
+	return origin;
+}
+
+void EnvironmentObject::setOrigin(sf::Vector2f origin) {
+	m_sprite.setOrigin(origin);
+}
+
+void EnvironmentObject::setColliderOrigin(sf::Vector2f origin) {
+	m_collideable.setOrigin(origin);
+}
+
+void EnvironmentObject::setColliderPosition(sf::Vector2f position) {
+	m_collideable.setPosition(position);
+}
+
+
+void EnvironmentObject::setColliderRadius(float radius) {
+	m_collideable.setRadius(radius);
+}
+
+void EnvironmentObject::drawCollider(sf::RenderWindow *window) {
+	m_collideable.drawBounds(window);
+}
