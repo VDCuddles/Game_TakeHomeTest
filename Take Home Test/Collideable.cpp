@@ -1,7 +1,7 @@
 #include "Collideable.h"
 
 Collideable::Collideable() {
-	m_collisionBounds.setFillColor(sf::Color(255,0,0,55));
+	m_collisionBounds.setFillColor(sf::Color(255, 255, 255, 55));
 }
 
 void Collideable::drawBounds(sf::RenderWindow *window) {
@@ -26,6 +26,6 @@ void Collideable::setPosition(sf::Vector2f position) {
 }
 
 float Collideable::getCollisionBounds() {
-	float bounds = m_collisionBounds.getRadius();
+	float bounds = m_collisionBounds.getRadius()*1.5;
 	return bounds;
 }

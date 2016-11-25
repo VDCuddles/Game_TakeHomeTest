@@ -21,13 +21,15 @@ private:
 	Grid m_grid;
 	Sprite m_player;
 	Sprite m_enemy;
+	EnvironmentObject m_object1;
+	EnvironmentObject m_object2;
+	EnvironmentObject m_object3;
 	LinkedList m_particlelist;
 	Particle **m_particleArray = new Particle*[10];
-	EnvironmentObject m_object1;
 	//particleNode* createNewParticleNode();
 	int m_numOfSpawnedParticles;
 	static Game* m_instance;
-	Collideable m_allColliders[3];
+	Collideable m_allColliders[5];
 
 
 public:

@@ -37,6 +37,24 @@ Game::Game() {
 	m_object1.setColliderOrigin(sf::Vector2f(19, 19));
 	m_object1.setColliderPosition(sf::Vector2f(390, 440));
 
+	m_object2.setIntRect(769, 177, 64, 60);
+	m_object2.setOrigin(sf::Vector2f(32, 30));
+	m_object2.loadTexture("Resources/tileset_desert.png");
+	m_object2.setPosition(sf::Vector2f(500, 250));
+	m_object2.setTexture();
+	m_object2.setColliderRadius(25);
+	m_object2.setColliderOrigin(sf::Vector2f(25, 25));
+	m_object2.setColliderPosition(sf::Vector2f(500, 250));
+
+	m_object3.setIntRect(391, 273, 58, 56);
+	m_object3.setOrigin(sf::Vector2f(29, 28));
+	m_object3.loadTexture("Resources/tileset_desert.png");
+	m_object3.setPosition(sf::Vector2f(200, 200));
+	m_object3.setTexture();
+	m_object3.setColliderRadius(19);
+	m_object3.setColliderOrigin(sf::Vector2f(19, 19));
+	m_object3.setColliderPosition(sf::Vector2f(200, 200));
+
 }
 
 Game::~Game()
@@ -104,6 +122,8 @@ void Game::update(sf::Time deltaTime) {
 	m_allColliders[0] = m_player.getCollider();
 	m_allColliders[1] = m_enemy.getCollider();
 	m_allColliders[2] = m_object1.getCollider();
+	m_allColliders[3] = m_object2.getCollider();
+	m_allColliders[4] = m_object3.getCollider();
 
 	checkCollision();
 
@@ -128,13 +148,15 @@ void Game::render() {
 		m_particleArray[i]->drawParticle(&m_window);
 	}
 
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 5; i++) {
 		m_allColliders[i].drawBounds(&m_window);
 	}
 	m_grid.drawGrid(&m_window);
 	m_player.drawSprite(&m_window);
 	m_enemy.drawSprite(&m_window);
 	m_object1.drawObject(&m_window);
+	m_object2.drawObject(&m_window);
+	m_object3.drawObject(&m_window);
 
 
 	m_window.display();
@@ -177,23 +199,18 @@ std::string Game::checkCollision() {
 	sf::Vector2f enemyPos;
 	float characterbounds;
 	sf::Vector2f object1Pos;
+	sf::Vector2f object2Pos;
+	sf::Vector2f object3Pos;
 	std::string output;
 
 	playerPos = m_allColliders[0].getPosition();
 	enemyPos = m_allColliders[1].getPosition();
 	object1Pos = m_allColliders[2].getPosition();
-	characterbounds = m_allColliders[0].getCollisionBounds();
+	characterbounds = (m_allColliders[0].getCollisionBounds());
 
 	if ((abs(playerPos.x - enemyPos.x) < characterbounds)
-		&& (abs(playerPos.y - enemyPos.y) < characterbounds))//range for hit registration on player
+		&& (abs(playerPos.y - enemyPos.y) < characterbounds))
 	{
-		//if (attackTimer.getElapsedTime().asSeconds() > 1)//only allow 1 attack every second per enemy
-		//{
-		//	//remove / comment next line for godmode
-		//	Game::instance()->getWorld().getEntities()[0]->applyDamage(10);
-		//	attackTimer.restart();//restart the timer for next attack
-		//}
-
 		std::cout << "01" << std::endl;
 		return "01";
 	}
