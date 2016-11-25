@@ -1,4 +1,5 @@
 #include "LinkedList.h"
+#include "Game.h"
 
 //code here references http://stackoverflow.com/questions/22141477/simple-linked-list-c
 
@@ -21,4 +22,8 @@ Particle LinkedList::popValue() {
 	head = head->next;
 	delete n;
 	return ret;
+}
+
+void LinkedList::displayAllParticles() {
+	//head->m_particle.drawParticle(Game::getInstance()->getWindow());
 }

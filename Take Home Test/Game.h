@@ -20,14 +20,16 @@ private:
 	void render();
 	Grid m_grid;
 	Particle m_particle;
-	Particle m_particle2;
+	//Particle m_particle2;
 	Sprite m_player;
 	Sprite m_enemy;
 	LinkedList m_particlelist;
+	Particle **m_particleArray = new Particle*[10];
 	EnvironmentObject m_object1;
 	//void initArrayofParticles();
 	//particleNode* createNewParticleNode();
-
+	bool particleInitialised;
+	static Game* m_instance;
 
 
 public:
@@ -36,7 +38,8 @@ public:
 	~Game();
 	void run();
 
-
+	sf::RenderWindow& getWindow();
+	static Game* getInstance();
 	//struct particleNode;
 };
 

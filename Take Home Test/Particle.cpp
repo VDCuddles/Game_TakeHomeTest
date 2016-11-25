@@ -5,6 +5,8 @@
 
 Particle::Particle() {
 
+	beenInitialised = false;
+
 	m_life = 100;
 	m_alpha = 255 * (m_life);
 	m_fillColor = sf::Color(0, 255, 0, m_alpha);
@@ -44,4 +46,21 @@ void Particle::update() {
 void Particle::drawParticle(sf::RenderWindow *window) {
 
 	window->draw(m_particle);
+}
+
+bool Particle::initialisehOffset() {
+	if (beenInitialised == false)
+	{
+		srand(time((time_t)NULL));
+		m_horizonttalOffset = rand() % (10);
+		if (m_horizonttalOffset > 5) {
+			m_horizonttalOffset *= -1;
+		}
+		m_horizonttalOffset /= 4;
+		beenInitialised = true;
+		return true;
+	}
+	else {
+		return false;
+	}
 }

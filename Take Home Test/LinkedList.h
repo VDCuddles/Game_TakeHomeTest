@@ -18,6 +18,7 @@ public:
 
 	LinkedList();
 	void addParticleToList(Particle particle);
+	void displayAllParticles();
 	Particle LinkedList::popValue();
 
 };

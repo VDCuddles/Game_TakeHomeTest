@@ -1,14 +1,15 @@
 #include "Game.h"
 
+Game* Game::m_instance = 0;
 Game::Game() {
+
+	m_instance = this;
+	particleInitialised = false;
 
 	sf::ContextSettings settings;
 	settings.antialiasingLevel = 8;
 	m_window.create(sf::VideoMode(sf::VideoMode(768,768)), "Take Home Test", sf::Style::Default, settings);
-	//Sprite* m_enemy = new Sprite(ENEMY);
 
-	//Sprite m_player(PLAYER);
-	//Sprite m_enemy(ENEMY);
 	m_player.setIntRect(0, 0, 24, 36);
 	m_player.loadSheet(PLAYER);
 	m_player.setPosition(sf::Vector2f(100, 100));
@@ -24,16 +25,24 @@ Game::Game() {
 	m_object1.setPosition(sf::Vector2f(300, 300));
 	m_object1.setTexture();
 
-	Particle p1;
-	Particle p2;
-	m_particlelist.addParticleToList(p1);
-	m_particlelist.addParticleToList(p2);
+	//Particle p1;
+	//Particle p2;
+	//m_particlelist.addParticleToList(p1);
+	//m_particlelist.addParticleToList(p2);
+	for (int i = 0; i < 10; i++) {
+		m_particleArray[i] = new Particle();
+	}
 	
 }
 
 Game::~Game()
 {
 	m_window.close();
+}
+
+Game* Game::getInstance()
+{
+	return m_instance;
 }
 
 void Game::handleEvents() {
@@ -81,21 +90,37 @@ void Game::handleEvents() {
 }
 
 void Game::update(sf::Time deltaTime) {
+	if (particleInitialised == false) {
+		for (int i = 0; i < 10; i++) {
+			if (m_particleArray[i]->initialisehOffset() == false){
+			m_particleArray[i]->initialisehOffset();
+			}
+		}
+		particleInitialised = true;
+	}
 
+
+	m_enemy.chase(m_player.getPosition());
+	m_player.animate(m_player.getFacing());
+	m_enemy.animate(m_enemy.getFacing());
+	for (int i = 0; i < 10; i++) {
+		m_particleArray[i]->update();
+	}
+	//m_particle.update();
+	//m_particle2.update();
 }
 
 void Game::render() {
 	m_window.clear();
+	for (int i = 0; i < 10; i++) {
+		m_particleArray[i]->drawParticle(&m_window);
+	}
 	m_grid.drawGrid(&m_window);
-	m_particle.update();
-	m_particle.drawParticle(&m_window);
-	m_particle2.update();
-	m_particle2.drawParticle(&m_window);
+	//m_particle.drawParticle(&m_window);
+	//m_particle2.drawParticle(&m_window);
+
 	m_object1.drawObject(&m_window);
-	m_enemy.chase(m_player.getPosition());
-	m_player.animate(m_player.getFacing());
 	m_player.drawSprite(&m_window);
-	m_enemy.animate(m_enemy.getFacing());
 	m_enemy.drawSprite(&m_window);
 	m_window.display();
 }
@@ -120,18 +145,6 @@ void Game::run(){
 	
 }
 
-
-//code here references http://stackoverflow.com/questions/21420772/array-of-linked-lists-c
-
-//struct Game::particleNode {
-//	Particle nodeParticle;
-//	particleNode *next;
-//};
-//
-//Game::particleNode* createNewParticleNode{
-//
-//}
-//
-//void Game::initArrayofParticles() {
-//	nodeArray = new *particleNode[];
-//}
+sf::RenderWindow& Game::getWindow() {
+	return m_window;
+}
