@@ -9,7 +9,7 @@ Particle::Particle() {
 
 	m_life = 100;
 	m_alpha = 255 * (m_life);
-	m_fillColor = sf::Color(0, 255, 0, m_alpha);
+	m_fillColor = sf::Color(255, 181, 70, m_alpha);
 
 	m_particle.setRadius(15);
 	m_particle.setFillColor(m_fillColor);
@@ -21,19 +21,31 @@ Particle::Particle() {
 	m_deltaY = 0.8;
 
 	srand(time((time_t)NULL));
-	m_horizonttalOffset = rand() % (10);
-	if (m_horizonttalOffset > 5) {
-		m_horizonttalOffset *= -1;
-	}
-	m_horizonttalOffset /= 4;
+	//m_horizonttalOffset = rand() % (10);
+	//if (m_horizonttalOffset > 5) {
+	//	m_horizonttalOffset *= -1;
+	//}
+	//m_horizonttalOffset /= 4;
 }
 
 void Particle::update() {
 
+	m_horizonttalOffset = rand() % (10);
+	if (m_horizonttalOffset > 5) {
+		m_horizonttalOffset *= -1;
+	}
+	m_horizonttalOffset /= 2;
+
+	if (m_particle.getPosition().y > 768) {
+		m_particle.setPosition(384, 384);
+		m_life = 100;
+		m_deltaY = 0.8;
+	}
+
 
 	m_life -= 0.5;
 	m_alpha = 255 * (m_life/100);
-	m_fillColor = sf::Color(0, 255, 0, m_alpha);
+	m_fillColor = sf::Color(255, (120 + (rand() % (50))), (20 + (rand() % (50))), m_alpha);
 	m_particle.setFillColor(m_fillColor);
 
 	m_deltaY -= 0.01;

@@ -25,7 +25,7 @@ private:
 	EnvironmentObject m_object2;
 	EnvironmentObject m_object3;
 	LinkedList m_particlelist;
-	Particle **m_particleArray = new Particle*[10];
+	Particle **m_particleArray = new Particle*[500];
 	//particleNode* createNewParticleNode();
 	int m_numOfSpawnedParticles;
 	static Game* m_instance;

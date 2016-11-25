@@ -127,7 +127,7 @@ void Game::update(sf::Time deltaTime) {
 
 	checkCollision();
 
-	if (m_numOfSpawnedParticles < 10) {
+	if (m_numOfSpawnedParticles < 500) {
 			m_particleArray[m_numOfSpawnedParticles] = new Particle();
 			setnumSParticles(getnumSParticles()+1);
 	}
@@ -152,8 +152,8 @@ void Game::render() {
 		m_allColliders[i].drawBounds(&m_window);
 	}
 	m_grid.drawGrid(&m_window);
-	m_player.drawSprite(&m_window);
 	m_enemy.drawSprite(&m_window);
+	m_player.drawSprite(&m_window);
 	m_object1.drawObject(&m_window);
 	m_object2.drawObject(&m_window);
 	m_object3.drawObject(&m_window);
