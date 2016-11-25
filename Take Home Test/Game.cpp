@@ -127,8 +127,10 @@ void Game::update(sf::Time deltaTime) {
 
 	checkCollision();
 
-	if (m_numOfSpawnedParticles < 500) {
+	if (m_numOfSpawnedParticles < 250) {
 			m_particleArray[m_numOfSpawnedParticles] = new Particle();
+			m_particleArray2[m_numOfSpawnedParticles] = new Particle();
+
 			setnumSParticles(getnumSParticles()+1);
 	}
 
@@ -138,6 +140,8 @@ void Game::update(sf::Time deltaTime) {
 	m_enemy.animate(m_enemy.getFacing());
 	for (int i = 0; i < getnumSParticles(); i++) {
 		m_particleArray[i]->update();
+		m_particleArray2[i]->update2();
+
 	}
 
 }
@@ -146,6 +150,7 @@ void Game::render() {
 	m_window.clear();
 	for (int i = 0; i < getnumSParticles(); i++) {
 		m_particleArray[i]->drawParticle(&m_window);
+		m_particleArray2[i]->drawParticle(&m_window);
 	}
 
 	for (int i = 0; i < 5; i++) {

@@ -22,6 +22,7 @@ public:
 
 	Particle();
 	void update();
+	void update2();
 	void drawParticle(sf::RenderWindow *window);
 
 };

@@ -30,6 +30,7 @@ Particle::Particle() {
 
 void Particle::update() {
 
+	srand(time((time_t)NULL));
 	m_horizonttalOffset = rand() % (10);
 	if (m_horizonttalOffset > 5) {
 		m_horizonttalOffset *= -1;
@@ -46,6 +47,33 @@ void Particle::update() {
 	m_life -= 0.5;
 	m_alpha = 255 * (m_life/100);
 	m_fillColor = sf::Color(255, (120 + (rand() % (50))), (20 + (rand() % (50))), m_alpha);
+	m_particle.setFillColor(m_fillColor);
+
+	m_deltaY -= 0.01;
+	m_newposX = m_particle.getPosition().x + (m_horizonttalOffset);
+	m_newposY = m_particle.getPosition().y - (m_speed * m_deltaY);
+	m_particle.setPosition(m_newposX, m_newposY);
+
+}
+
+void Particle::update2() {
+
+	m_horizonttalOffset = rand() % (10);
+	if (m_horizonttalOffset > 5) {
+		m_horizonttalOffset *= -1;
+	}
+	m_horizonttalOffset /= 2;
+
+	if (m_particle.getPosition().y > 768) {
+		m_particle.setPosition(384, 384);
+		m_life = 100;
+		m_deltaY = 0.8;
+	}
+
+
+	m_life -= 0.5;
+	m_alpha = 255 * (m_life / 100);
+	m_fillColor = sf::Color((70 + (rand() % (50))), (0 + (rand() % (50))), (180 + (rand() % (50))), m_alpha);
 	m_particle.setFillColor(m_fillColor);
 
 	m_deltaY -= 0.01;
