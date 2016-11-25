@@ -99,6 +99,14 @@ void Game::handleEvents() {
 }
 
 void Game::update(sf::Time deltaTime) {
+
+
+	m_allColliders[0] = m_player.getCollider();
+	m_allColliders[1] = m_enemy.getCollider();
+	m_allColliders[2] = m_object1.getCollider();
+
+	checkCollision();
+
 	if (m_numOfSpawnedParticles < 10) {
 			m_particleArray[m_numOfSpawnedParticles] = new Particle();
 			setnumSParticles(getnumSParticles()+1);
@@ -119,9 +127,10 @@ void Game::render() {
 	for (int i = 0; i < getnumSParticles(); i++) {
 		m_particleArray[i]->drawParticle(&m_window);
 	}
-	m_player.drawCollider(&m_window);
-	m_enemy.drawCollider(&m_window);
-	m_object1.drawCollider(&m_window);
+
+	for (int i = 0; i < 3; i++) {
+		m_allColliders[i].drawBounds(&m_window);
+	}
 	m_grid.drawGrid(&m_window);
 	m_player.drawSprite(&m_window);
 	m_enemy.drawSprite(&m_window);
@@ -160,4 +169,37 @@ int Game::getnumSParticles() {
 }
 void Game::setnumSParticles(int num) {
 	m_numOfSpawnedParticles = num;
+}
+
+std::string Game::checkCollision() {
+
+	sf::Vector2f playerPos;
+	sf::Vector2f enemyPos;
+	float characterbounds;
+	sf::Vector2f object1Pos;
+	std::string output;
+
+	playerPos = m_allColliders[0].getPosition();
+	enemyPos = m_allColliders[1].getPosition();
+	object1Pos = m_allColliders[2].getPosition();
+	characterbounds = m_allColliders[0].getCollisionBounds();
+
+	if ((abs(playerPos.x - enemyPos.x) < characterbounds)
+		&& (abs(playerPos.y - enemyPos.y) < characterbounds))//range for hit registration on player
+	{
+		//if (attackTimer.getElapsedTime().asSeconds() > 1)//only allow 1 attack every second per enemy
+		//{
+		//	//remove / comment next line for godmode
+		//	Game::instance()->getWorld().getEntities()[0]->applyDamage(10);
+		//	attackTimer.restart();//restart the timer for next attack
+		//}
+
+		std::cout << "01" << std::endl;
+		return "01";
+	}
+
+	else {
+		return "00";
+	}
+
 }

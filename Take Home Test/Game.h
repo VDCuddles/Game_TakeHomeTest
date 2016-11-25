@@ -27,6 +27,7 @@ private:
 	//particleNode* createNewParticleNode();
 	int m_numOfSpawnedParticles;
 	static Game* m_instance;
+	Collideable m_allColliders[3];
 
 
 public:
@@ -39,6 +40,7 @@ public:
 	static Game* getInstance();
 	int getnumSParticles();
 	void setnumSParticles(int num);
+	std::string checkCollision();
 };
 
 

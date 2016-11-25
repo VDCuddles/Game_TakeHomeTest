@@ -16,6 +16,11 @@ void Collideable::setOrigin(sf::Vector2f origin) {
 	m_collisionBounds.setOrigin(origin);
 }
 
+sf::Vector2f Collideable::getPosition() {
+	sf::Vector2f position = m_collisionBounds.getPosition();
+	return position;
+}
+
 void Collideable::setPosition(sf::Vector2f position) {
 	m_collisionBounds.setPosition(position);
 }

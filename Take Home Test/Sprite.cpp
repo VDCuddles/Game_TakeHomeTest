@@ -180,3 +180,7 @@ void Sprite::setColliderRadius(float radius) {
 void Sprite::drawCollider(sf::RenderWindow *window) {
 	m_collideable.drawBounds(window);
 }
+
+Collideable Sprite::getCollider() {
+	return m_collideable;
+}

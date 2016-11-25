@@ -82,3 +82,7 @@ void EnvironmentObject::setColliderRadius(float radius) {
 void EnvironmentObject::drawCollider(sf::RenderWindow *window) {
 	m_collideable.drawBounds(window);
 }
+
+Collideable EnvironmentObject::getCollider() {
+	return m_collideable;
+}

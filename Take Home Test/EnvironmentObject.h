@@ -35,5 +35,6 @@ public:
 	void setColliderPosition(sf::Vector2f position);
 	void setColliderRadius(float radius);
 	void drawCollider(sf::RenderWindow *window);
+	Collideable getCollider();
 
 };
