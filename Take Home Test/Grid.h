@@ -14,9 +14,9 @@ private:
 public:
 
 	Grid();
-	static const int m_map[ROW_COUNT][COLUMN_COUNT];
+	int m_map[ROW_COUNT][COLUMN_COUNT];
 	void drawGrid(sf::RenderWindow *window);
-	//int getTileType(int x, int y);
+	int getTileType(int x, int y);
 
 	enum Tile {
 

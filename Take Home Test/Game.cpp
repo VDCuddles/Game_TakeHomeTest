@@ -75,7 +75,9 @@ void Game::handleEvents() {
 			std::string string = "index " + std::to_string(i) + " tile location: " +
 				std::to_string(m_allColliders[i].getTileLocation().x) +
 				"," +
-				std::to_string(m_allColliders[i].getTileLocation().y);
+				std::to_string(m_allColliders[i].getTileLocation().y) +
+				", type: " + 
+				std::to_string(getGridTileType((m_allColliders[i].getTileLocation().x),(m_allColliders[i].getTileLocation().y)));
 			std::cout << string << std::endl;
 		}
 
@@ -239,18 +241,18 @@ std::string Game::checkCollision() {
 
 }
 
-//int Game::getGridTileType(int x, int y) {
-//	return (m_grid.getTileType(x, y));
-//	}
-//
-//bool Game::checkMoveable(sf::Vector2i nextlocation) {
-//	int gridposx = nextlocation.x;
-//	int gridposy = nextlocation.y;
-//	int tiletype = (getGridTileType(gridposx,gridposy));
-//	if (tiletype == 2) {
-//		return false;
-//	}
-//	else {
-//		return true;
-//	}
-//}
+int Game::getGridTileType(int x, int y) {
+	return (m_grid.getTileType(x, y));
+	}
+
+bool Game::checkMoveable(sf::Vector2i nextlocation) {
+	int gridposx = nextlocation.x;
+	int gridposy = nextlocation.y;
+	int tiletype = (getGridTileType(gridposx,gridposy));
+	if (tiletype == 2) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}

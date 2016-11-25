@@ -16,7 +16,7 @@ Grid::Grid() {
 		m_lines[2 * 64 + 2 * i + 1] = sf::Vector2f(768, iY);
 	}
 
-	 const int m_map[ROW_COUNT][COLUMN_COUNT]{
+	 int m_map[ROW_COUNT][COLUMN_COUNT]{
 		{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
 		{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
 		{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
@@ -89,7 +89,7 @@ void Grid::drawGrid(sf::RenderWindow *window) {
 	window->draw(m_lines);
 }
 
-//int Grid::getTileType(int x, int y) {
-//	int value = m_map[y][x];
-//	return value;
-//}
+int Grid::getTileType(int x, int y) {
+	return Grid::m_map[y][x];
+	//return Tile(m_map[y][x]);
+}

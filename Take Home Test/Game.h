@@ -44,8 +44,8 @@ public:
 	int getnumSParticles();
 	void setnumSParticles(int num);
 	std::string checkCollision();
-	//bool checkMoveable(sf::Vector2i nextlocation);
-	//int getGridTileType(int x, int y);
+	bool checkMoveable(sf::Vector2i nextlocation);
+	int getGridTileType(int x, int y);
 };
 
 
