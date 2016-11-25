@@ -17,14 +17,12 @@ private:
 	float m_life;
 	sf::Color m_fillColor;
 	int m_alpha;
-	bool beenInitialised;
 
 public:
 
 	Particle();
 	void update();
 	void drawParticle(sf::RenderWindow *window);
-	bool initialisehOffset();
 
 };
 

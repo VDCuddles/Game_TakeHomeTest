@@ -15,27 +15,6 @@ Sprite::Sprite() {
 
 }
 
-//Sprite::Sprite(CharacterType charatype) {
-
-//	loadSheet(charatype);
-//	m_textureRect.left = 0;
-//	m_textureRect.top = 0;
-//	m_textureRect.width = 24;
-//	m_textureRect.height = 36;
-//
-//	m_position = (sf::Vector2f(500, 500));
-//
-//	m_sprite.updatePosition(m_enemyPosition);
-//	m_sprite.setTextureRect(m_textureRect);
-//	m_sprite.setTexture(m_texture);
-//
-//	if (charatype == PLAYER)
-//	{
-//		m_position = (sf::Vector2f(100, 100));
-//	}
-//
-//}
-
 void Sprite::drawSprite(sf::RenderWindow *window) {
 	window->draw(m_sprite);
 }

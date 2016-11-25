@@ -19,16 +19,13 @@ private:
 	void update(sf::Time deltaTime);
 	void render();
 	Grid m_grid;
-	Particle m_particle;
-	//Particle m_particle2;
 	Sprite m_player;
 	Sprite m_enemy;
 	LinkedList m_particlelist;
 	Particle **m_particleArray = new Particle*[10];
 	EnvironmentObject m_object1;
-	//void initArrayofParticles();
 	//particleNode* createNewParticleNode();
-	bool particleInitialised;
+	int m_numOfSpawnedParticles;
 	static Game* m_instance;
 
 
@@ -40,7 +37,8 @@ public:
 
 	sf::RenderWindow& getWindow();
 	static Game* getInstance();
-	//struct particleNode;
+	int getnumSParticles();
+	void setnumSParticles(int num);
 };
 
 

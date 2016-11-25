@@ -4,7 +4,7 @@ Game* Game::m_instance = 0;
 Game::Game() {
 
 	m_instance = this;
-	particleInitialised = false;
+	m_numOfSpawnedParticles = 0;
 
 	sf::ContextSettings settings;
 	settings.antialiasingLevel = 8;
@@ -25,14 +25,6 @@ Game::Game() {
 	m_object1.setPosition(sf::Vector2f(300, 300));
 	m_object1.setTexture();
 
-	//Particle p1;
-	//Particle p2;
-	//m_particlelist.addParticleToList(p1);
-	//m_particlelist.addParticleToList(p2);
-	for (int i = 0; i < 10; i++) {
-		m_particleArray[i] = new Particle();
-	}
-	
 }
 
 Game::~Game()
@@ -90,35 +82,26 @@ void Game::handleEvents() {
 }
 
 void Game::update(sf::Time deltaTime) {
-	if (particleInitialised == false) {
-		for (int i = 0; i < 10; i++) {
-			if (m_particleArray[i]->initialisehOffset() == false){
-			m_particleArray[i]->initialisehOffset();
-			}
-		}
-		particleInitialised = true;
+	if (m_numOfSpawnedParticles < 10) {
+			m_particleArray[m_numOfSpawnedParticles] = new Particle();
+			setnumSParticles(getnumSParticles()+1);
 	}
 
 
 	m_enemy.chase(m_player.getPosition());
 	m_player.animate(m_player.getFacing());
 	m_enemy.animate(m_enemy.getFacing());
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < getnumSParticles(); i++) {
 		m_particleArray[i]->update();
 	}
-	//m_particle.update();
-	//m_particle2.update();
 }
 
 void Game::render() {
 	m_window.clear();
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < getnumSParticles(); i++) {
 		m_particleArray[i]->drawParticle(&m_window);
 	}
 	m_grid.drawGrid(&m_window);
-	//m_particle.drawParticle(&m_window);
-	//m_particle2.drawParticle(&m_window);
-
 	m_object1.drawObject(&m_window);
 	m_player.drawSprite(&m_window);
 	m_enemy.drawSprite(&m_window);
@@ -147,4 +130,11 @@ void Game::run(){
 
 sf::RenderWindow& Game::getWindow() {
 	return m_window;
+}
+
+int Game::getnumSParticles() {
+	return m_numOfSpawnedParticles;
+}
+void Game::setnumSParticles(int num) {
+	m_numOfSpawnedParticles = num;
 }
